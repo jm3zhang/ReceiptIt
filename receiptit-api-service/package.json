@@ -1,0 +1,50 @@
+{
+  "name": "receiptit-api-service",
+  "description": "API service for ReceiptIt",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ReceiptIt/receiptit-api-service.git"
+  },
+  "engines": {
+    "node": ">=8.6.0"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "npm run db:migration && node --stack-size=65500 lib/index.js",
+    "start:dev": "npm run db:migration && node --stack-size=65500 lib/index.js",
+    "db:migration": "npm run db:pre-migrate && node_modules/.bin/sequelize db:migrate",
+    "db:seeder": "node_modules/.bin/sequelize db:seed:all",
+    "db:pre-migrate": "node scripts/createDB.js",
+    "debug": "node --inspect-brk=0.0.0.0:9229 lib/index.js",
+    "jshint": "eslint lib/* spec/unit/* spec/integration/* --cache",
+    "unit": "./node_modules/mocha/bin/_mocha -t 5000 spec/unit --recursive --trace",
+    "it": "./node_modules/mocha/bin/_mocha -t 60000 spec/integration --recursive"
+  },
+  "dependencies": {
+    "app-root-path": "^2.2.1",
+    "aws-sdk": "^2.493.0",
+    "bcrypt": "^3.0.6",
+    "cookie-parser": "1.x",
+    "cors": "2.x",
+    "dotenv": "^8.0.0",
+    "errr": "2.x",
+    "eslint": "^6.0.1",
+    "express": "4.x",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.14",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.26",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "multer-s3": "^2.9.0",
+    "mysql2": "^1.6.5",
+    "preconditions": "2.x",
+    "request": "2.x",
+    "sequelize": "^5.9.4",
+    "sequelize-cli": "^5.5.0",
+    "uuid": "3.1.x",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {}
+}
